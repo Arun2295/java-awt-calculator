@@ -1,0 +1,87 @@
+import java.awt.*;
+import java.awt.event.*;
+class AFrame extends Frame implements ActionListener{
+    TextField t1,t2,t3;
+    Label l1,l2,l3;
+    Button b1,b2,b3,b4,b5;
+    int i1,i2,i3;             
+    AFrame(){
+             t1 = new TextField(20);
+            t2 = new TextField(20);
+            t3 = new TextField(20);
+
+            l1 = new Label("First Number ");
+            l2 = new Label("Second Number ");
+            l3 = new Label("Result");
+
+            b1 = new Button("Add");
+            b2 = new Button("Sub");
+            b3 = new Button("Div");
+            b4 = new Button("Mul");
+            b5= new Button("Clear");
+            add(l1);add(t1);
+            add(l2);add(t2);
+            add(l3);add(t3);
+            add(b1);
+            add(b2);
+            add(b3);
+            add(b4);
+            add(b5);
+            b1.addActionListener(this);
+            b2.addActionListener(this);
+            b3.addActionListener(this);
+            b4.addActionListener(this);
+            b5.addActionListener(this);
+    }
+       
+        public void actionPerformed(ActionEvent ae){
+            try{
+                i1 = Integer.parseInt(t1.getText());
+                i2 = Integer.parseInt(t2.getText());
+                if(ae.getSource()==b1){
+                    i3 = i1+i2;
+                    t3.setText(""+i3);
+                }
+                 else if(ae.getSource()==b2){
+                    i3 = i1-i2;
+                    t3.setText(""+i3);
+                }
+                 else if(ae.getSource()==b3){
+                    if(i2==0){
+                        t3.setText("Can't divide by zero");
+                    }
+                    else{
+                        t3.setText(""+(double)i1/i2);
+                    }
+                }
+                 else if(ae.getSource()==b4){
+                    i3 = i1*i2;
+                    t3.setText(""+i3);
+                    
+                }
+                 else if(ae.getSource()==b5){
+                    t1.setText("");
+                    t2.setText("");
+                    t3.setText("");
+                 }
+                }
+                
+                catch(Exception e){
+                    t3.setText("Error");
+            }
+        }
+    }
+
+public class CompleteCalculator{
+    public static void main(String[] args) {
+    AFrame obj = new AFrame();
+    obj.setTitle("Java-awt-Calculator");
+    obj.setVisible(true);
+    obj.setSize(250,300);
+    obj.setLayout(new GridLayout(6,2,10,10));
+    obj.setBackground(Color.LIGHT_GRAY);
+  
+
+
+    }
+}
